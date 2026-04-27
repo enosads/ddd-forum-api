@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { randomUUID } from "node:crypto";
 
 export class Instructor {
   public id: string;
@@ -7,6 +7,5 @@ export class Instructor {
   constructor(name: string, id?: string) {
     this.name = name;
     this.id = id ?? randomUUID();
-
   }
 }
