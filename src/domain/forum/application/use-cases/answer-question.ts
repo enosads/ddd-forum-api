@@ -1,11 +1,15 @@
-import { UniqueEntityId } from "../../../../core/entities/unique-entity-id";
-import type { AnswersRepository } from "../repositories/answers-repository";
+import { UniqueEntityID } from "../../../../core/entities/unique-entity-id";
 import { Answer } from "../../enterprise/entities/answer";
+import type { AnswersRepository } from "../repositories/answers-repository";
 
 interface AnswerQuestionUseCaseRequest {
   instructorID: string;
   questionId: string;
   content: string;
+}
+
+interface AnswerQuestionUseCaseResponse {
+  answer: Answer;
 }
 
 export class AnswerQuestionUseCase {
@@ -14,15 +18,17 @@ export class AnswerQuestionUseCase {
     instructorID,
     questionId,
     content,
-  }: AnswerQuestionUseCaseRequest) {
+  }: AnswerQuestionUseCaseRequest): Promise<AnswerQuestionUseCaseResponse> {
     const answer = Answer.create({
       content,
-      authorId: new UniqueEntityId(instructorID),
-      questionId: new UniqueEntityId(questionId),
+      authorId: new UniqueEntityID(instructorID),
+      questionId: new UniqueEntityID(questionId),
     });
 
     await this.answersRepository.create(answer);
 
-    return answer;
+    return {
+      answer,
+    };
   }
 }
