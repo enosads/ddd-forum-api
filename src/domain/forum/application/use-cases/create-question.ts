@@ -8,9 +8,9 @@ interface CreateQuestionUseCaseRequest {
   content: string;
 }
 
-type CreateQuestionUseCaseResponse = {
+interface CreateQuestionUseCaseResponse {
   question: Question;
-};
+}
 
 export class CreateQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}

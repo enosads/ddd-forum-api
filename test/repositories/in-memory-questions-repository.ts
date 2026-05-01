@@ -2,7 +2,12 @@ import type { QuestionsRepository } from "@/domain/forum/application/repositorie
 import type { Question } from "@/domain/forum/enterprise/entities/question";
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {
-  private questions: Question[] = [];
+  public questions: Question[] = [];
+
+  async findById(id: string): Promise<Question | null> {
+    const question = this.questions.find(question => question.id.value === id);
+    return question ?? null;
+  }
 
   async findBySlug(slug: string): Promise<Question | null> {
     const question = this.questions.find(
@@ -13,5 +18,12 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
   async create(question: Question): Promise<void> {
     this.questions.push(question);
+  }
+
+  async delete(question: Question): Promise<void> {
+    const index = this.questions.findIndex(item => item.id === question.id);
+    if (index !== -1) {
+      this.questions.splice(index, 1);
+    }
   }
 }
