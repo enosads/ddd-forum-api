@@ -3,7 +3,7 @@ import type { Answer } from "../entities/answer";
 import { AnswerQuestionUseCase } from "./answer-question";
 
 const fakeAnswersRepository = {
-  create: async (answer: Answer) => {
+  create: async (_answer: Answer) => {
     return;
   },
 };
