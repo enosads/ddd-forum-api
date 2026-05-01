@@ -2,7 +2,7 @@ import { Slug } from "./slug";
 
 describe("Slug", () => {
   it("should create a slug from a string", () => {
-    const slug = Slug.create("Hello World");
-    expect(slug.getValue()).toBe("hello-world");
+    const slug = Slug.createFromText("Hello World");
+    expect(slug.value).toBe("hello-world");
   });
 });
