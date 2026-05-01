@@ -1,4 +1,4 @@
-import type { Answer } from "../forum/enterprise/entities/answer";
+import type { Answer } from "../../enterprise/entities/answer";
 import { AnswerQuestionUseCase } from "./answer-question";
 
 const fakeAnswersRepository = {
