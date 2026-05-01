@@ -1,4 +1,3 @@
-import { expect, test } from "vitest";
 import type { Answer } from "../entities/answer";
 import { AnswerQuestionUseCase } from "./answer-question";
 
