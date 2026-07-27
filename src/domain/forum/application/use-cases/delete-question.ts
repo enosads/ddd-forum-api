@@ -5,14 +5,12 @@ interface DeleteQuestionUseCaseRequest {
   questionId: string;
 }
 
-type DeleteQuestionUseCaseResponse = {};
-
 export class DeleteQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
   public async execute({
     authorId,
     questionId,
-  }: DeleteQuestionUseCaseRequest): Promise<DeleteQuestionUseCaseResponse> {
+  }: DeleteQuestionUseCaseRequest): Promise<void> {
     const question = await this.questionsRepository.findById(questionId);
     if (!question) {
       throw new Error("Question not found");
@@ -21,6 +19,5 @@ export class DeleteQuestionUseCase {
       throw new Error("You are not the author of this question");
     }
     await this.questionsRepository.delete(question);
-    return {};
   }
 }
