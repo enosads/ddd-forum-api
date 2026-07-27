@@ -5,7 +5,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
   public questions: Question[] = [];
 
   async findById(id: string): Promise<Question | null> {
-    const question = this.questions.find(question => question.id.value === id);
+    const question = this.questions.find(item => item.id.value === id);
     return question ?? null;
   }
 

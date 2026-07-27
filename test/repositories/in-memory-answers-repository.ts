@@ -2,9 +2,20 @@ import type { AnswersRepository } from "@/domain/forum/application/repositories/
 import type { Answer } from "@/domain/forum/enterprise/entities/answer";
 
 export class InMemoryAnswersRepository implements AnswersRepository {
-  private answers: Answer[] = [];
+  public answers: Answer[] = [];
 
+  async findById(id: string): Promise<Answer | null> {
+    const answer = this.answers.find(item => item.id.value === id);
+    return answer ?? null;
+  }
   async create(answer: Answer) {
     this.answers.push(answer);
+  }
+
+  async delete(answer: Answer): Promise<void> {
+    const index = this.answers.findIndex(item => item.id === answer.id);
+    if (index !== -1) {
+      this.answers.splice(index, 1);
+    }
   }
 }
