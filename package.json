@@ -18,7 +18,7 @@
     "@faker-js/faker": "^10.4.0",
     "@types/node": "^26.0.0",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "dayjs": "^1.11.21"
