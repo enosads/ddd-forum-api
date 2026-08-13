@@ -1,0 +1,27 @@
+import type { AnswerCommentsRepository } from "../repositories/answer-comments-repository";
+
+interface DeleteAnswerCommentUseCaseRequest {
+  authorId: string;
+  answerCommentId: string;
+}
+
+export class DeleteAnswerCommentUseCase {
+  constructor(private answerCommentRepository: AnswerCommentsRepository) {}
+  public async execute({
+    authorId,
+    answerCommentId,
+  }: DeleteAnswerCommentUseCaseRequest): Promise<void> {
+    const answerComment =
+      await this.answerCommentRepository.findById(answerCommentId);
+
+    if (!answerComment) {
+      throw new Error("Answer comment not found");
+    }
+
+    if (answerComment.authorId.toString() !== authorId) {
+      throw new Error("You are not the author of this answer comment");
+    }
+
+    await this.answerCommentRepository.delete(answerComment);
+  }
+}
