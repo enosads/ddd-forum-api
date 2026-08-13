@@ -7,8 +7,10 @@ export class InMemoryQuestionCommentsRepository
   public questionComments: QuestionComment[] = [];
 
   async findById(id: string): Promise<QuestionComment | null> {
-    const answer = this.questionComments.find(item => item.id.value === id);
-    return answer ?? null;
+    const questionComment = this.questionComments.find(
+      item => item.id.value === id
+    );
+    return questionComment ?? null;
   }
 
   async create(questionComment: QuestionComment) {
